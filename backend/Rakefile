@@ -1,0 +1,17 @@
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __FILE__)
+require 'bundler/setup'
+Bundler.require(:default)
+require 'rack/handler/puma'
+require_relative 'oss'
+require_relative 'sts'
+
+task :console do
+  binding.pry
+end
+
+task :server do
+  app = Rack::Builder.new do
+    run Sts::API
+  end
+  Rack::Server.start(app: app, server: 'puma', Port: 3002, Threads: '2:16')
+end
