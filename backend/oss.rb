@@ -10,8 +10,8 @@ class Oss
       # region: oss-cn-hangzhou
       # dir: project-case-dev
     @client ||= Aliyun::STS::Client.new(
-      access_key_id: 'LTAI5tJxJtz8SaUGpW2rBPXY',
-      access_key_secret: 'KZspf6omxaTcwSPGuvr4VRAPMD579w'
+      access_key_id: 'xxxxxxxxx',
+      access_key_secret: 'xxxxxxxxxxxxx'
     )
   end
 
