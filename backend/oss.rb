@@ -5,8 +5,8 @@ class Oss
   def self.client
     # access key,secret
     @client ||= Aliyun::STS::Client.new(
-      access_key_id: 'aaaaaaaaaaaaa',
-      access_key_secret: 'xxxxxxxxxxxx'
+      access_key_id: 'xxxxxxxxx',
+      access_key_secret: 'xxxxxxxxxxxxx'
     )
   end
 
