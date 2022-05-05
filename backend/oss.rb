@@ -3,24 +3,19 @@ require 'aliyun/oss'
 
 class Oss
   def self.client
-          # host: oss-cn-hangzhou.aliyuncs.com
-      # bucket: rccfiles
-      # access_key_id: 
-      # access_key_secret: 
-      # region: oss-cn-hangzhou
-      # dir: project-case-dev
+    # access key,secret
     @client ||= Aliyun::STS::Client.new(
-      access_key_id: 'LTAI5tJxJtz8SaUGpW2rBPXY',
-      access_key_secret: 'KZspf6omxaTcwSPGuvr4VRAPMD579w'
+      access_key_id: 'aaaaaaaaaaaaa',
+      access_key_secret: 'xxxxxxxxxxxx'
     )
   end
 
   def self.token
     policy = Aliyun::STS::Policy.new
-    policy.allow(['oss:Put*'], ['acs:oss:*:*:dong-87/test/*'])
-    # policy.allow(['oss-cloudbox:PutObject'], ['acs:oss:*:*:dong-87/*'])
-    # policy.allow(['oss-cloudbox:AbortMultipartUpload'], ['acs:oss:*:*:dong-87/*'])
+    policy.allow(['oss:Put*'], ['acs:oss:*:*:dong-87/test/*']) #上传版，bucket 和路径
+    policy.allow(['oss:Get*'], ['acs:oss:*:*:dong-87/test/*']) # 下载
     
+    # 角色赋权
     t = client.assume_role('acs:ram::1633783653024415:role/uploader','uploader',policy, 60 * 15)
     {
       region: 'oss-cn-beijing',
